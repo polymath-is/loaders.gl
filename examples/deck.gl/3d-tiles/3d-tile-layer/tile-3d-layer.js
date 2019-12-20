@@ -35,7 +35,7 @@ export default class Tile3DLayer extends CompositeLayer {
   }
 
   shouldUpdateState({changeFlags}) {
-    return changeFlags.somethingChanged;
+    return changeFlags.viewportChanged;
   }
 
   async updateState({props, oldProps}) {
@@ -91,7 +91,7 @@ export default class Tile3DLayer extends CompositeLayer {
 
   _updateTileset(tileset3d) {
     const {timeline, viewport} = this.context;
-    if (!timeline || !viewport || !tileset3d) {
+    if (!timeline || !viewport || viewport.id !== 'main' || !tileset3d) {
       return;
     }
 
